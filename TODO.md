@@ -1,17 +1,27 @@
 # TODO
 
-configure nats
+configure nats:
 
 - only needs jetstream
 - add to procfile
-- not public and so not in Caddfile
+- not public and so not in Caddyfile
 
-configure marmot
+configure marmot:
 
 - needs nats
 - add to Caddyfile
 
-telemetry
+telemetry:
 
-- ad caddy based telemtry
+- add caddy based telemetry
+- add bun based telemetry
 
+web gui
+
+- HTMX with hugo looks very easy and high capability.
+
+## Remove male files
+
+For now makefiles are flexible.
+
+We can easily turn these into mage files for each sub system.

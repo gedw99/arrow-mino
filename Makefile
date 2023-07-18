@@ -1,9 +1,9 @@
 include help.mk
 
 include caddy.mk
+include fly.mk
 include go.mk
 include minio.mk
-
 include nats.mk
 include overmind.mk
 
@@ -28,6 +28,7 @@ MINIO_SRC_OUT_FSPATH=$(BIN)
 dep-tools: dep-bin
 	# todo: add arg so we can put into .bin for easy deplyoment.
 	$(MAKE) caddy-dep
+	$(MAKE) fly-dep
 	$(MAKE) minio-dep
 	$(MAKE) nats-dep
 	$(MAKE) overmind-dep
