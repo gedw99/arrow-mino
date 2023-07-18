@@ -70,5 +70,3 @@ Use:
   - Can also be run in User Mode, so that Users can add Markdown, and it creates the HTML on the fly.
 - https://arrow.apache.org/docs/js/
   - Have not used this, but lets see what it can provide.
-
-
