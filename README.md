@@ -8,13 +8,11 @@ URL: https://github.com/gedw99/arrow-mino
 
 A clean and simple solution for Data and Multimedia (images and video) to be indexed with SQLite enabling Arrow FlightSQL based data queries and updates.
 
-More info here: https://arrow.apache.org/docs/format/FlightSql.html
+More info about Arrow FlightSQL: https://arrow.apache.org/docs/format/FlightSql.html
 
-The example can all be installed easily with just a make file and be cross platform without any docker to make it very easy to run etc.
+The example can all be installed easily with just a makefile and be cross platform to run on all Desktops and Servers.
 
-It’s also very small amount of code.
-
-What follows is the proposed Architecture Stack...
+It’s also very small amount of code to maintain.
 
 ## Development
 
@@ -61,6 +59,19 @@ make all-package
 
 ```
 
+## Deployment
+
+Fly.io and Hetzner both offer autoscaling, without any kubernetes.
+
+Fly.io can run a single docker that has the binaries injected and a ProcFile. This is a very simple way to run.
+
+Replication and HA:
+
+Fly.io also can scale up and down across regions, and Minio and NATS will keep all regions in sync.
+
+Autoscaling:
+
+Fly.io can be configure to do this, but its still alpha.
 
 ## SQLite
 
@@ -120,14 +131,4 @@ Use:
 - https://arrow.apache.org/docs/js/
   - Have not used this, but lets see what it can provide.
 - https://github.com/pocketbase/pocketbase/discussions/2898
-  - Pocketbaes uses Sqlite and might be a good based
-
-## Deplyoment
-
-Fly.io can run a single docker that has the binaries injected and a ProcFile. This is a very simple way to run.
-
-Replication and HA:
-
-Fly.io also can scale up and down across regions, and Minio and NATS will keep all regions in sync.
-
-
+  - Pocketbase uses Sqlite and might be a good based
