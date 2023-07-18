@@ -18,9 +18,10 @@ It’s also very small amount of code to maintain.
 
 All binaries and data is local to this repo and will not be put anywhere else on your system.
 
-The 2 folders are:
-.bin
-.data
+The 2 folders are used are:
+
+- .bin
+- .data
 
 To install everything:
 

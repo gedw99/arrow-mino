@@ -40,10 +40,7 @@ dep-tools: dep-bin
 1-minio:
 	$(MAKE) minio-server-run
 
-
 2-sqlite:
-	# TODO: make a makefile for this
-
 	# build to .bin
 	cd cmd/sqlite && go build -o $(BIN_SQLITE) .
 
