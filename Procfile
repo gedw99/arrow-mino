@@ -1,2 +1,2 @@
-caddy: caddy run
-minio: minio
+minio: make 1-minio
+caddy: make 2-caddy

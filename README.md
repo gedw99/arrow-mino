@@ -1,6 +1,37 @@
 # arrow-mino
 
-Golang with Arrow, Sqlite, Minio
+Golang project using Arrow, Sqlite, Minio, NATS
+
+## Development
+
+All binaries and data is local to this repo and will not be put anywhere else on your system.
+
+The 2 folders are:
+.bin
+.data
+
+Later packaging and deployment will be added.
+
+To instal and run eveything:
+
+```sh
+# install all tools and servers into local .bin
+make 0-dep
+
+# boot minio
+make 1-minio
+
+# boot caddy
+make 2-caddy
+
+```
+
+To run it all as a ProcFile:
+
+```sh
+make all-serve
+
+```
 
 ## Goal
 
