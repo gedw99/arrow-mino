@@ -17,6 +17,10 @@ BIN_SQLITE=$(BIN)/$(BIN_SQLITE_NAME)
 
 
 print:
+	@echo ""
+	@echo "BIN:    $(BIN)"
+
+### DEPS
 
 0-dep: dep-tools
 
