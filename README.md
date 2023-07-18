@@ -68,5 +68,7 @@ Use:
 - https://github.com/acaloiaro/hugo-htmx-go-template
   - Hugo with Htmx, makes it very easy to build a Web Admin and Docs
   - Can also be run in User Mode, so that Users can add Markdown, and it creates the HTML on the fly.
+- https://arrow.apache.org/docs/js/
+  - Have not used this, but lets see what it can provide.
 
 
