@@ -4,6 +4,18 @@ Golang project using Arrow, Sqlite, Minio, NATS
 
 URL: https://github.com/gedw99/arrow-mino
 
+## Goal
+
+A clean and simple solution for Data and Multimedia (images and video) to be indexed with SQLite enabling Arrow FlightSQL based data queries and updates.
+
+More info here: https://arrow.apache.org/docs/format/FlightSql.html
+
+The example can all be installed easily with just a make file and be cross platform without any docker to make it very easy to run etc.
+
+It’s also very small amount of code.
+
+What follows is the proposed Architecture Stack...
+
 ## Development
 
 All binaries and data is local to this repo and will not be put anywhere else on your system.
@@ -33,9 +45,6 @@ make 2-sqlite
 
 # boot caddy
 make 10-caddy
-
-
-
 ```
 
 To serve everything from a ProcFile:
@@ -52,20 +61,10 @@ make all-package
 
 ```
 
-## Goal
-
-A clean and simple solution for Data and Multimedia (images and video) to be indexed with SQLite enabling Arrow FlightSQL based data queries and updates.
-
-The example can all be installed easily with just a make file and be cross platform without any docker to make it very easy to run etc.
-
-It’s also very small amount of code.
-
-What follows is the proposed Architecture Stack
 
 ## SQLite
 
 We start from the SQLite example here: https://github.com/apache/arrow/tree/main/go/arrow/flight/flightsql/example that we can built on top of.
-
 
 ## SQLite replication
 
@@ -120,3 +119,15 @@ Use:
   - Can also be run in User Mode, so that Users can add Markdown, and it creates the HTML on the fly.
 - https://arrow.apache.org/docs/js/
   - Have not used this, but lets see what it can provide.
+- https://github.com/pocketbase/pocketbase/discussions/2898
+  - Pocketbaes uses Sqlite and might be a good based
+
+## Deplyoment
+
+Fly.io can run a single docker that has the binaries injected and a ProcFile. This is a very simple way to run.
+
+Replication and HA:
+
+Fly.io also can scale up and down across regions, and Minio and NATS will keep all regions in sync.
+
+
