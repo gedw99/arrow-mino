@@ -41,6 +41,9 @@ CADDY_SRC_DOMAIN=localhost
 	# https://browse.localhost/
 	# https://minio-console.localhost/
 
+3-sqlite:
+	# TODO: make a makefile for this
+
 ### OVERMIND (procFile)
 
 all-serve:

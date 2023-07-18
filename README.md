@@ -10,13 +10,18 @@ The 2 folders are:
 .bin
 .data
 
-Later packaging and deployment will be added.
-
-To instal and run eveything:
+To install everything:
 
 ```sh
-# install all tools and servers into local .bin
+# All tools and servers are installed into the local .bin directory
 make 0-dep
+
+```
+
+To run everything individually:
+
+```sh
+# all servers use the local .data directory
 
 # boot minio
 make 1-minio
@@ -24,12 +29,22 @@ make 1-minio
 # boot caddy
 make 2-caddy
 
+# boot Arrow Sqlite for Flight SQL
+make 3-sqlite
+
 ```
 
-To run it all as a ProcFile:
+To serve everything from a ProcFile:
 
 ```sh
 make all-serve
+
+```
+
+To package for Desktop and Server deployment:
+
+```sh
+make all-package
 
 ```
 
