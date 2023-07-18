@@ -59,6 +59,14 @@ make all-package
 
 ```
 
+
+To deploy to Fly.io:
+
+```sh
+make 20-deploy
+
+```
+
 ## Deployment
 
 Fly.io and Hetzner both offer autoscaling, without any kubernetes.

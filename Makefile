@@ -3,6 +3,7 @@ include help.mk
 include caddy.mk
 include fly.mk
 include go.mk
+include hcloud.mk
 include minio.mk
 include nats.mk
 include overmind.mk
@@ -29,6 +30,7 @@ dep-tools: dep-bin
 	# todo: add arg so we can put into .bin for easy deplyoment.
 	$(MAKE) caddy-dep
 	$(MAKE) fly-dep
+	$(MAKE) hcloud-dep
 	$(MAKE) minio-dep
 	$(MAKE) nats-dep
 	$(MAKE) overmind-dep
@@ -45,6 +47,9 @@ dep-tools: dep-bin
 	# build to .bin
 	cd cmd/sqlite && go build -o $(BIN_SQLITE) .
 
+	# todo: cross build. Need to add OUT Path to go.mk
+	$(MAKE) GO_SRC_FSPATH=$(PWD)/cmd/sqlite GO_SRC_NAME=$(BIN_SQLITE_NAME) go-build
+	
 	# run it
 	$(BIN_SQLITE_NAME)
 	# 127.0.0.1:57077
@@ -66,5 +71,13 @@ all-serve:
 	$(MAKE) overmind-run
 
 all-package:
-	# todo: package for Desktops and Servers
-	# go.mk has most of this already.
+	# todo: 
+	# package for Desktops and Servers
+		# go.mk has most of this already.
+	# Docker with all bins and envs inside
+		# test on fly.io
+
+### DEPLOY
+
+20-deploy:
+	$(MAKE) fly-deloy

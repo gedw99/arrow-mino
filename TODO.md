@@ -1,5 +1,8 @@
 # TODO
 
+make all make-dep have optional install path, so they can all go into .bin
+
+
 configure nats:
 
 - only needs jetstream
