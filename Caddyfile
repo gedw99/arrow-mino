@@ -1,0 +1,58 @@
+# FROM: https://community.hetzner.com/tutorials/caddy-as-simple-reverse-proxy-and-file-server
+
+
+# https://browse.localhost/
+browse.localhost:443 {
+	file_server browse
+
+	log {
+		output file ./.data/caddy/browse/main.log {
+			roll_size 1gb
+			roll_keep 1
+			roll_keep_for 720h
+		}
+	}
+}
+
+# https://minio-console.localhost/
+minio-console.localhost:443 {
+	log {
+		output file ./.data/caddy/minio-console/main.log {
+			roll_size 1gb
+			roll_keep 1
+			roll_keep_for 720h
+		}
+	}
+
+	# minio api s3
+	reverse_proxy 127.0.0.1:9001
+}
+
+# https://minio-api.localhost/
+minio-api.localhost:443 {
+	log {
+		output file ./.data/caddy/minio-api/main.log {
+			roll_size 1gb
+			roll_keep 1
+			roll_keep_for 720h
+		}
+	}
+
+	# minio console
+	reverse_proxy 127.0.0.1:9000
+}
+
+# https://app.localhost/
+# any typical server
+app.localhost:443 {
+	log {
+		output file ./.data/caddy/app/main.log {
+			roll_size 1gb
+			roll_keep 1
+			roll_keep_for 720h
+		}
+	}
+
+	# app
+	reverse_proxy 127.0.0.1:8080
+}
