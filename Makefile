@@ -9,7 +9,11 @@ include overmind.mk
 
 BIN=$(PWD)/.bin
 # Pick your path based on OS and ARCH
-export PATH:=$(PATH):$(BIN)/darwin_amd64
+export PATH:=$(PATH):$(BIN):$(BIN)/darwin_amd64
+
+BIN_SQLITE_NAME=sqlite
+BIN_SQLITE=$(BIN)/$(BIN_SQLITE_NAME)
+
 
 print:
 
@@ -33,16 +37,26 @@ dep-tools: dep-bin
 1-minio:
 	$(MAKE) minio-server-run
 
+
+2-sqlite:
+	# TODO: make a makefile for this
+
+	# build to .bin
+	cd cmd/sqlite && go build -o $(BIN_SQLITE) .
+
+	# run it
+	$(BIN_SQLITE_NAME)
+	# 127.0.0.1:57077
+
 ### CADDY
 
 CADDY_SRC_DOMAIN=localhost
-2-caddy:
+10-caddy:
 	$(MAKE) caddy-server-run
 	# https://browse.localhost/
 	# https://minio-console.localhost/
+	# https://sqlite.localhost/
 
-3-sqlite:
-	# TODO: make a makefile for this
 
 ### OVERMIND (procFile)
 

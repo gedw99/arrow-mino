@@ -1,2 +1,3 @@
 minio: make 1-minio
-caddy: make 2-caddy
+sqlite: make 2-sqlite
+caddy: make 10-caddy

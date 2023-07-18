@@ -1,7 +1,5 @@
-# FROM: https://community.hetzner.com/tutorials/caddy-as-simple-reverse-proxy-and-file-server
-
-
 # https://browse.localhost/
+# turn this off if not wanted
 browse.localhost:443 {
 	file_server browse
 
@@ -42,8 +40,23 @@ minio-api.localhost:443 {
 	reverse_proxy 127.0.0.1:9000
 }
 
+# https://sqlite.localhost/
+# sqlite db server
+sqlite.localhost:443 {
+	log {
+		output file ./.data/sqlite/app/main.log {
+			roll_size 1gb
+			roll_keep 1
+			roll_keep_for 720h
+		}
+	}
+
+	# app
+	reverse_proxy 127.0.0.1:57077
+}
+
 # https://app.localhost/
-# any typical server
+# Web GUI for Admin and Users
 app.localhost:443 {
 	log {
 		output file ./.data/caddy/app/main.log {

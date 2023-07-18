@@ -26,11 +26,13 @@ To run everything individually:
 # boot minio
 make 1-minio
 
-# boot caddy
-make 2-caddy
-
 # boot Arrow Sqlite for Flight SQL
-make 3-sqlite
+make 2-sqlite
+
+# boot caddy
+make 10-caddy
+
+
 
 ```
 
