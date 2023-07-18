@@ -2,6 +2,8 @@
 
 Golang project using Arrow, Sqlite, Minio, NATS
 
+URL: https://github.com/gedw99/arrow-mino
+
 ## Development
 
 All binaries and data is local to this repo and will not be put anywhere else on your system.
