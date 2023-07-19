@@ -56,6 +56,11 @@ dep-tools: dep-bin
 	$(BIN_SQLITE_NAME)
 	# 127.0.0.1:57077
 
+3-nats:
+	$(MAKE) nats-server-run
+	# Listening for websocket clients on wss://0.0.0.0:443
+	# Listening for client connections on 0.0.0.0:4222
+
 ### CADDY
 
 CADDY_SRC_DOMAIN=localhost
@@ -68,11 +73,13 @@ CADDY_SRC_DOMAIN=localhost
 
 ### OVERMIND (procFile)
 
-all-serve:
+20-overmind:
 	# this will start all the services.
 	$(MAKE) overmind-run
 
-all-package:
+30-package:
+	# copy all the right bits into "pack" folder ?
+
 	# todo: 
 	# package for Desktops and Servers
 		# go.mk has most of this already.
@@ -81,5 +88,10 @@ all-package:
 
 ### DEPLOY
 
-20-deploy:
-	$(MAKE) fly-deloy
+FLY_SRC_FSPATH=$(BIN)
+FLY_SRC_APP=arrow-minio-app
+FLY_SRC_NAME=arrow-minio
+40-deploy:
+	# todo: finish docker and steps
+	# - build docker in github or with fly remote build ? fly remote build is easier
+	$(MAKE) fly-deploy

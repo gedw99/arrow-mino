@@ -42,6 +42,9 @@ make 1-minio
 # boot Arrow Sqlite for Flight SQL
 make 2-sqlite
 
+# boot nats
+make 3-nats
+
 # boot caddy
 make 10-caddy
 ```
@@ -49,14 +52,14 @@ make 10-caddy
 To serve everything from a ProcFile:
 
 ```sh
-make all-serve
+make 20-overmind
 
 ```
 
 To package for Desktop and Server deployment:
 
 ```sh
-make all-package
+make 30-package
 
 ```
 
@@ -64,7 +67,7 @@ make all-package
 To deploy to Fly.io:
 
 ```sh
-make 20-deploy
+make 40-deploy
 
 ```
 

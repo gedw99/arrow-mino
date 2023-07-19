@@ -30,7 +30,8 @@ FLY_DOWNLOAD_URL_PREFIX=https://github.com/superfly/flyctl/releases/download
 ## Environmental
 # https://fly.io/docs/flyctl/integrating/
 FLY_CONFIG_FSPATH=$(HOME)/.fly/
-FLY_AUTH_TOKEN=$(shell $(FLY_BIN) auth token)
+FLY_ENV_ACCESS_TOKEN=$(shell $(FLY_BIN_NAME) auth token)
+FLY_ENV_AUTH_TOKEN=$(shell $(FLY_BIN_NAME) auth token)
 FLX_CMD_SUFFIX=--json
 
 # Override variables
@@ -69,8 +70,8 @@ fly-print:
 	@echo ""
 	@echo "-- Env variables:"
 	@echo "FLY_CONFIG_FSPATH:             $(FLY_CONFIG_FSPATH)"
-	@echo "FLY_ACCESS_TOKEN:              $(FLY_ACCESS_TOKEN)"  
-	@echo "FLY_AUTH_TOKEN:                $(FLY_AUTH_TOKEN)"  
+	@echo "FLY_ENV_ACCESS_TOKEN:          $(FLY_ENV_ACCESS_TOKEN)"  
+	@echo "FLY_ENV_AUTH_TOKEN:            $(FLY_ENV_AUTH_TOKEN)"  
 	
 	@echo
 	@echo Override variables:
