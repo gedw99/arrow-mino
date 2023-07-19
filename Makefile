@@ -34,6 +34,7 @@ dep-tools: dep-bin
 	# todo: add arg so we can put into .bin for easy deplyoment.
 	$(MAKE) caddy-dep
 	$(MAKE) fly-dep
+	$(MAKE) go-dep
 	$(MAKE) hcloud-dep
 	$(MAKE) minio-dep
 	$(MAKE) nats-dep
