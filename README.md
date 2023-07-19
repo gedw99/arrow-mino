@@ -73,6 +73,12 @@ make 40-deploy
 
 ## Deployment
 
+This philosophy here is to deploy the same code on all servers, and toggle what is activated.
+
+https://github.com/ServiceWeaver/weaver takes the same concept further with live adjustments with what runs where and how many of them, based on metrics.
+
+We will eventually support weaver, but for now we just turn everything on.
+
 Fly.io and Hetzner both offer autoscaling, without any kubernetes.
 
 Fly.io can run a single docker that has the binaries injected and a ProcFile. This is a very simple way to run.

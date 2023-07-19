@@ -37,3 +37,4 @@ sc-dep: sc-dep-del
 	cp $(SOURCE)/minio.mk $(TARGET)
 	cp $(SOURCE)/nats.mk $(TARGET)
 	cp $(SOURCE)/overmind.mk $(TARGET)
+	cp $(SOURCE)/weaver.mk $(TARGET)

@@ -4,6 +4,7 @@
 # - GOENV like here: https://github.com/shanna/entxid-test/blob/master/Makefile, so make things cleaner 
 # - Docker like here: https://github.com/shanna/entxid-test/blob/master/Makefile,
 
+# GO_BIN_NAME varies by OS and so use uname swithc to set it.
 
 ### OS
 GO_ARCH=$(shell $(GO_BIN_NAME) env GOARCH)
@@ -11,9 +12,6 @@ GO_OS=$(shell $(GO_BIN_NAME) env GOOS)
 GO_TOOLDIR=$(shell $(GO_BIN_NAME) env GOTOOLDIR)
 GO_PATH ?= $(shell $(GO_BIN_NAME) env GOPATH)
 
-#ifndef GOPATH
-#override GOPATH=$(HOME)/go
-#endif
 
 ### BINS
 GO_BIN_NAME=go
@@ -45,6 +43,16 @@ GO_GOTIP_BIN_VERSION=latest
 GO_GOTIP_BIN_WHICH=$(shell which $(GO_GOTIP_BIN_NAME))
 GO_GOTIP_BIN_WHICH_VERSION=$(shell $(GO_GOTIP_BIN_NAME) version)
 GO_GOTIP_BIN_WHICH_GO_VERSION=$(shell $(GO_BIN_NAME) version $(GO_GOTIP_BIN_WHICH))
+
+# rsc.io/tmp/gonew
+# https://github.com/rsc/tmp/tree/master/gonew
+# ex: https://github.com/ServiceWeaver/template
+GO_NEW_BIN_NAME=gonew
+GO_NEW_BIN_VERSION=latest
+GO_NEW_BIN_WHICH=$(shell which $(GO_NEW_BIN_NAME))
+GO_NEW_BIN_WHICH_VERSION=$(shell $(GO_NEW_BIN_NAME) version)
+GO_NEW_BIN_WHICH_GO_VERSION=$(shell $(GO_BIN_NAME) version $(GO_NEW_BIN_WHICH))
+
 
 ### VARIABLES
 
@@ -204,6 +212,20 @@ go-print-dep:
 	@echo "GO_GOTIP_BIN_WHICH_VERSION          $(GO_GOTIP_BIN_WHICH_VERSION)"
 	@echo "GO_GOTIP_BIN_WHICH_GO_VERSION       $(GO_GOTIP_BIN_WHICH_GO_VERSION)"
 
+	@echo ""
+	@echo "GO_GOTIP_BIN_NAME:                  $(GO_GOTIP_BIN_NAME)"
+	@echo "GO_GOTIP_BIN_VERSION                $(GO_GOTIP_BIN_VERSION)"
+	@echo "GO_GOTIP_BIN_WHICH                  $(GO_GOTIP_BIN_WHICH)"
+	@echo "GO_GOTIP_BIN_WHICH_VERSION          $(GO_GOTIP_BIN_WHICH_VERSION)"
+	@echo "GO_GOTIP_BIN_WHICH_GO_VERSION       $(GO_GOTIP_BIN_WHICH_GO_VERSION)"
+
+	@echo ""
+	@echo "GO_NEW_BIN_NAME:                  $(GO_NEW_BIN_NAME)"
+	@echo "GO_NEW_BIN_VERSION                $(GO_NEW_BIN_VERSION)"
+	@echo "GO_NEW_BIN_WHICH                  $(GO_NEW_BIN_WHICH)"
+	@echo "GO_NEW_BIN_WHICH_VERSION          $(GO_NEW_BIN_WHICH_VERSION)"
+	@echo "GO_NEW_BIN_WHICH_GO_VERSION       $(GO_NEW_BIN_WHICH_GO_VERSION)"
+
 go-print-build:
 	
 	@echo ""
@@ -264,7 +286,12 @@ go-dep:
 	$(GO_BIN_NAME) install golang.org/dl/gotip@$(GO_GOTIP_BIN_VERSION)
 	@echo "gotip installed at : $(GO_GOTIP_BIN_WHICH)"
 
-	
+	@echo
+	@echo "-- Installing gonew"
+	$(GO_BIN_NAME) install rsc.io/tmp/gonew@$(GO_NEW_BIN_VERSION)
+	@echo "gotip installed at : $(GO_NEW_BIN_WHICH)"
+
+## removes all golang OS artifacts that builds up over time.
 go-clean-os:
 	# clear out modules, caches, etc 
 	$(GO_BIN_NAME) clean -x -modcache
@@ -272,11 +299,24 @@ go-clean-os:
 	$(GO_BIN_NAME) clean -x -cache
 	$(GO_BIN_NAME) clean -x -fuzzcache
 
+## Finds and lists all .bin folders, at the pwd context
 go-clean-bin-ls:
-	# .bin fir that i build into.
 	find . -type d -name .bin
+
+## Finds and deletes all .bin folders, at the pwd context
 go-clean-bin-run:
+	# deletes all .bin folders, which we use for all builds.
 	find . -type d -name .bin -exec rm -rf {} \;
+
+
+## Finds and lists all .data folders, at the pwd context
+go-clean-data-ls:
+	find . -type d -name .data
+
+## Finds and deletes all .data folders, at the pwd context
+go-clean-data-run:
+	# deletes all .data folders, which we use for all data.
+	find . -type d -name .data -exec rm -rf {} \;
 
 ## Reconciles golang packages
 go-mod-tidy:
@@ -454,4 +494,11 @@ ifeq ($(GO_OS),linux)
 	xdg-open $(GO_BUILD_LINUX_AMD64_PATH)
 endif
 
+# github.com/ServiceWeaver/template
+GO_NEW_SRC_MOD_SOURCE=
+# example.com/foo
+GO_NEW_SRC_MOD_TARGET=
+go-new-run:
+	#ex: gonew github.com/ServiceWeaver/template example.com/foo
 
+	$(GO_NEW_BIN_NAME) $(GO_NEW_SRC_MOD_SOURCE) $(GO_NEW_SRC_MOD_TARGET)

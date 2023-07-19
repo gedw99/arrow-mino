@@ -7,6 +7,8 @@ include hcloud.mk
 include minio.mk
 include nats.mk
 include overmind.mk
+include weaver.mk
+
 
 BIN=$(PWD)/.bin
 # Pick your path based on OS and ARCH
@@ -39,6 +41,7 @@ dep-tools: dep-bin
 	$(MAKE) minio-dep
 	$(MAKE) nats-dep
 	$(MAKE) overmind-dep
+	$(MAKE) weaver-dep
 
 ### MINIO
 
@@ -94,4 +97,6 @@ FLY_SRC_NAME=arrow-minio
 40-deploy:
 	# todo: finish docker and steps
 	# - build docker in github or with fly remote build ? fly remote build is easier
+	# - config minio: https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-multi-node-multi-drive.html
+	
 	$(MAKE) fly-deploy
